@@ -30,7 +30,7 @@ public class Item
 
     public void SetSellIn(int sellIn)
     {
-        this.sellIn = sellIn;
+        this.sellIn = sellIn <= 0 ? 0 : sellIn;
     }
 
     public int GetQuality()
