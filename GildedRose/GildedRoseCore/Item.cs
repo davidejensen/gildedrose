@@ -51,38 +51,9 @@ public class Item
 
     protected virtual void UpdateQuality()
     {
-        if ((!GetName().Equals("Aged Brie")) && !GetName().Equals("Backstage passes to a TAFKAL80ETC concert"))
-        {
-            if (GetQuality() > 0)
-            {
-                SetQuality(GetQuality() - 1);
-            }
-        }
-        else
-        {
-            if (GetQuality() < 50)
-            {
-                SetQuality(GetQuality() + 1);
-
-                if (GetName().Equals("Backstage passes to a TAFKAL80ETC concert"))
-                {
-                    if (GetSellIn() < 11)
-                    {
-                        if (GetQuality() < 50)
-                        {
-                            SetQuality(GetQuality() + 1);
-                        }
-                    }
-
-                    if (GetSellIn() < 6)
-                    {
-                        if (GetQuality() < 50)
-                        {
-                            SetQuality(GetQuality() + 1);
-                        }
-                    }
-                }
-            }
+        if (GetQuality() > 0)
+        { 
+            SetQuality(GetQuality() - 1);
         }
     }
 
