@@ -52,41 +52,28 @@ public class Item
     protected virtual void UpdateQuality()
     {
         if (GetQuality() > 0)
-        { 
-            SetQuality(GetQuality() - 1);
+        {
+            ReduceQuality();
         }
     }
 
-    protected virtual  void UpdateSellIn()
+    protected virtual void UpdateSellIn()
+    {
+        ReduceSellIn();
+
+        if (GetSellIn() < 0 && GetQuality() > 0)
+        {
+            ReduceQuality();
+        }
+    }
+
+    private void ReduceQuality()
+    {
+        SetQuality(GetQuality() - 1);
+    }
+
+    private void ReduceSellIn()
     {
         SetSellIn(GetSellIn() - 1);
-
-        if (GetSellIn() < 0)
-        {
-            if (!GetName().Equals("Aged Brie"))
-            {
-                if (!GetName().Equals("Backstage passes to a TAFKAL80ETC concert"))
-                {
-                    if (GetQuality() > 0)
-                    {
-                        if (!GetName().Equals("Sulfuras, Hand of Ragnaros"))
-                        {
-                            SetQuality(GetQuality() - 1);
-                        }
-                    }
-                }
-                else
-                {
-                    SetQuality(GetQuality() - GetQuality());
-                }
-            }
-            else
-            {
-                if (GetQuality() < 50)
-                {
-                    SetQuality(GetQuality() + 1);
-                }
-            }
-        }
     }
 }

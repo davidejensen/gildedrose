@@ -10,12 +10,13 @@ public class BackstagePasses : Item
     {
         if (GetQuality() < 50)
         {
-            SetQuality(GetQuality() + 1);
+            IncreaseQuality();
+            
             if (GetSellIn() < 11)
             {
                 if (GetQuality() < 50)
                 {
-                    SetQuality(GetQuality() + 1);
+                    IncreaseQuality();
                 }
             }
 
@@ -23,9 +24,24 @@ public class BackstagePasses : Item
             {
                 if (GetQuality() < 50)
                 {
-                    SetQuality(GetQuality() + 1);
+                    IncreaseQuality();
                 }
             }
+        }
+    }
+
+    private void IncreaseQuality()
+    {
+        SetQuality(GetQuality() + 1);
+    }
+
+    protected override void UpdateSellIn()
+    {
+        base.UpdateSellIn();
+
+        if (GetSellIn() < 0)
+        {
+            SetQuality(0);
         }
     }
 }
